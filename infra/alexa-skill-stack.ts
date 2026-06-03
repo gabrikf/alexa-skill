@@ -1,7 +1,7 @@
 import * as cdk from "aws-cdk-lib";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as nodejs from "aws-cdk-lib/aws-lambda-nodejs";
-import * as path from "path";
+import * as path from "node:path";
 import { Construct } from "constructs";
 
 export class AlexaSkillStack extends cdk.Stack {
@@ -15,8 +15,8 @@ export class AlexaSkillStack extends cdk.Stack {
         runtime: lambda.Runtime.NODEJS_22_X,
         entry: path.join(__dirname, "..", "src", "handler.ts"),
         handler: "handler",
-        memorySize: 128,
-        timeout: cdk.Duration.seconds(8),
+        memorySize: 256,
+        timeout: cdk.Duration.seconds(10),
         architecture: lambda.Architecture.ARM_64,
         bundling: {
           minify: true,
@@ -27,6 +27,8 @@ export class AlexaSkillStack extends cdk.Stack {
         },
         environment: {
           NODE_OPTIONS: "--enable-source-maps",
+          OPENROUTER_API_KEY: process.env.OPENROUTER_API_KEY ?? "",
+          LLM_MODEL: process.env.LLM_MODEL ?? "openai/gpt-4o-mini",
         },
       },
     );
