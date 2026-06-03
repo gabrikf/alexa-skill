@@ -12,9 +12,18 @@ export const GlobalErrorHandler: Alexa.ErrorHandler = {
   handle(handlerInput, error) {
     console.error(`Unhandled error: ${error.message}`, error);
 
+    const locale = handlerInput.requestEnvelope.request.locale ?? "en-US";
+    const isPt = locale.startsWith("pt");
+
     return handlerInput.responseBuilder
-      .speak("Sorry, something went wrong. Please try again.")
-      .reprompt("You can ask me anything.")
+      .speak(
+        isPt
+          ? "Desculpa, algo deu errado. Tenta de novo."
+          : "Sorry, something went wrong. Please try again.",
+      )
+      .reprompt(
+        isPt ? "Pode me perguntar qualquer coisa." : "You can ask me anything.",
+      )
       .getResponse();
   },
 };
