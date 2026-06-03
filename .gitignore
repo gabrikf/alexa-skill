@@ -4,7 +4,7 @@ cdk.out/
 *.js
 *.d.ts
 *.js.map
-
+.env
 # Keep infra and src ts files
 !src/**/*.ts
 !infra/**/*.ts
