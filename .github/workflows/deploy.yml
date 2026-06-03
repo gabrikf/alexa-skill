@@ -34,3 +34,5 @@ jobs:
 
       - name: CDK Deploy
         run: npx cdk deploy --require-approval never
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}

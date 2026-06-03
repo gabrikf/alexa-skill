@@ -19,6 +19,8 @@
     "typescript": "^5.7.0"
   },
   "dependencies": {
+    "@ai-sdk/openai-compatible": "^2.0.48",
+    "ai": "^6.0.196",
     "ask-sdk-core": "^2.14.0",
     "ask-sdk-model": "^1.86.0"
   }
