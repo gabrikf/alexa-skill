@@ -16,20 +16,33 @@ export const FallbackIntentHandler: Alexa.RequestHandler = {
     );
   },
   async handle(handlerInput) {
+    const locale = handlerInput.requestEnvelope.request.locale ?? "en-US";
+    const isPt = locale.startsWith("pt");
+
     try {
-      const response = await chat(
-        "The user said something I couldn't understand. Ask them to repeat.",
-      );
+      const prompt = isPt
+        ? "O usuário disse algo que não entendi. Peça para ele repetir, em português."
+        : "The user said something I couldn't understand. Ask them to repeat.";
+
+      const response = await chat(prompt);
 
       return handlerInput.responseBuilder
         .speak(response.text)
-        .reprompt("I'm listening.")
+        .reprompt(isPt ? "Estou ouvindo." : "I'm listening.")
         .getResponse();
     } catch (error) {
       console.error("LLM error in fallback:", error);
       return handlerInput.responseBuilder
-        .speak("I didn't catch that. Could you say it again?")
-        .reprompt("I'm still here. What can I help you with?")
+        .speak(
+          isPt
+            ? "Não entendi. Pode repetir?"
+            : "I didn't catch that. Could you say it again?",
+        )
+        .reprompt(
+          isPt
+            ? "Ainda estou aqui. Como posso ajudar?"
+            : "I'm still here. What can I help you with?",
+        )
         .getResponse();
     }
   },

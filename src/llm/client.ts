@@ -26,8 +26,11 @@ export async function chat(userMessage: string): Promise<LLMResponse> {
     model: openrouter(config.model),
     system:
       "You are a helpful voice assistant called via Alexa. " +
+      "Always respond in the same language the user speaks. " +
+      "If the user speaks in Portuguese, respond in Brazilian Portuguese (pt-BR). " +
+      "If the user speaks in English, respond in English. " +
       "Keep responses concise and conversational — ideally under 3 sentences. " +
-      "The user is listening, not reading.",
+      "The user is listening, not reading, so be natural and direct.",
     messages: [{ role: "user", content: userMessage }],
     // Ready for MCP tools: just add `tools: { ... }` here when needed
   });
