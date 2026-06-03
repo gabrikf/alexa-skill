@@ -35,7 +35,7 @@ export class AlexaSkillStack extends cdk.Stack {
     alexaSkillFunction.addPermission("AlexaInvoke", {
       principal: new cdk.aws_iam.ServicePrincipal("alexa-appkit.amazon.com"),
       action: "lambda:InvokeFunction",
-      eventSourceToken: "amzn1.ask.skill.REPLACE_WITH_YOUR_SKILL_ID",
+      eventSourceToken: "amzn1.ask.skill.2b1355d5-fb98-44c9-bb73-ee5cac528486",
     });
 
     new cdk.CfnOutput(this, "LambdaFunctionArn", {
