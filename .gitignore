@@ -1,0 +1,13 @@
+node_modules/
+dist/
+cdk.out/
+*.js
+*.d.ts
+*.js.map
+
+# Keep infra and src ts files
+!src/**/*.ts
+!infra/**/*.ts
+
+# CDK context
+cdk.context.json

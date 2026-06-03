@@ -1,0 +1,25 @@
+{
+  "name": "alexa-skill-lambda",
+  "version": "1.0.0",
+  "description": "Alexa Skill Lambda Function with AWS CDK",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "cdk": "cdk",
+    "deploy": "cdk deploy --require-approval never",
+    "synth": "cdk synth",
+    "diff": "cdk diff"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "aws-cdk": "^2.175.0",
+    "aws-cdk-lib": "^2.175.0",
+    "constructs": "^10.4.2",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "ask-sdk-core": "^2.14.0",
+    "ask-sdk-model": "^1.86.0"
+  }
+}
